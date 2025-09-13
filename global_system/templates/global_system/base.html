@@ -1,10 +1,197 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Ресторан{% endblock %}</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        body {
+            background: linear-gradient(to right, #f8f9fa, #e9ecef);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .navbar {
+            background: linear-gradient(135deg, #2a9d8f, #264653);
+            box-shadow: 0 2px 15px rgba(42, 157, 143, 0.3);
+            padding: 15px 0;
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.8rem;
+            color: #e9c46a;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .navbar-brand:hover {
+            color: #f4a261;
+        }
+
+        .btn {
+            border-radius: 20px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background-color: #e76f51;
+            border-color: #e76f51;
+        }
+
+        .btn-primary:hover {
+            background-color: #f4a261;
+            border-color: #f4a261;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline-light {
+            border-radius: 20px;
+            border-color: #e9c46a;
+            color: #e9c46a;
+        }
+
+        .btn-outline-light:hover {
+            background-color: #e9c46a;
+            border-color: #e9c46a;
+            color: #264653;
+        }
+
+        .btn-outline-danger {
+            border-radius: 20px;
+            border-color: #e76f51;
+            color: #e76f51;
+        }
+
+        .btn-outline-danger:hover {
+            background-color: #e76f51;
+            border-color: #e76f51;
+            color: white;
+        }
+
+        .product-card {
+            border: 2px solid #2a9d8f;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 15px rgba(42, 157, 143, 0.1);
+            background-color: #ffffff;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(42, 157, 143, 0.2);
+        }
+
+        .product-img {
+            height: 220px;
+            object-fit: cover;
+            width: 100%;
+        }
+
+        footer {
+            background: linear-gradient(135deg, #264653, #2a9d8f);
+            border-top: 3px solid #e9c46a;
+            color: #e9c46a;
+        }
+
+        .search-container {
+            flex-grow: 1;
+            max-width: 400px;
+            margin: 0 20px;
+        }
+        .search-input {
+            border-radius: 20px 0 0 20px !important;
+            border-right: none;
+            border-color: #2a9d8f;
+            background-color: #ffffff;
+        }
+        .search-btn {
+            border-radius: 0 20px 20px 0 !important;
+            border-left: none;
+            background-color: #e76f51;
+            border-color: #e76f51;
+            color: white;
+        }
+
+        .search-btn:hover {
+            background-color: #f4a261;
+            border-color: #f4a261;
+        }
+
+        .text-primary {
+            color: #2a9d8f !important;
+        }
+
+        .text-muted {
+            color: #6c757d !important;
+        }
+
+        .accent-text {
+            color: #e9c46a;
+        }
+
+        .coral-bg {
+            background-color: #e76f51;
+        }
+
+        .teal-bg {
+            background-color: #2a9d8f;
+        }
+    </style>
 </head>
 <body>
 
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'food_list' %}">
+                <i class="fas fa-utensils me-2"></i>La passion
+            </a>
+
+            <div class="search-container">
+                <form class="d-flex" action="{% url 'food_list' %}" method="get">
+                    <div class="input-group">
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="d-flex align-items-center gap-3">
+                {% if user.is_authenticated %}
+                    <span class="me-2 accent-text">Добро пожаловать {{ user.username }}!</span>
+                    <form action="{% url 'logout' %}" method="post" class="d-inline">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-outline-light">
+                            <i class="fas fa-sign-out-alt me-1"></i>Выйти
+                        </button>
+                    </form>
+                {% else %}
+                    <a href="{% url 'login' %}" class="btn btn-outline-light">
+                        <i class="fas fa-sign-in-alt me-1"></i>Войти
+                    </a>
+                    <a href="{% url 'register' %}" class="btn btn-primary">
+                        <i class="fas fa-user-plus me-1"></i>Регистрация
+                    </a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+
+    <main class="py-5">
+        <div class="container">
+            {% block content %}{% endblock %}
+        </div>
+    </main>
+
+    <footer class="py-4 mt-5 text-center">
+        <div class="container">
+            <h5 class="accent-text mb-3">9812qweqwwqq</h5>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
