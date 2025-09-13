@@ -5,6 +5,9 @@ class Food(models.Model):
     desciption = models.TextField()
     food_price = models.DecimalField(max_digits=10, decimal_places=2)
 
+    def __str__(self):
+        return self.name
+
 class Table(models.Model):
     table_number = models.CharField(max_length=10)
     capacity = models.PositiveIntegerField()
