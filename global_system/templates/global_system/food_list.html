@@ -33,31 +33,24 @@
 
 
     <div class="row">
-        {% if foods %}
-            {% for food in foods %}
-            <div class="col-md-4 col-lg-3 mb-4">
-                <div class="card h-100 shadow-sm">
-                    <img src="https://via.placeholder.com/300x200/b30000/ffffff?text=Product+Image"
-                         class="card-img-top" alt="{{ food.name }}">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ food.name }}</h5>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <span class="h5 text-danger mb-0">${{ food.food_price }}</span>
-                            <button class="btn btn-danger">
-                                <i class="bi bi-cart-plus"></i> В корзину
-                            </button>
-                        </div>
-                    </div>
-                </div>
+        {% for food in foods %}
+    <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+            <div class="card-body dark">
+                <h5 class="card-title">{{ food.name }}</h5>
+                <p class="card-text text-muted">{{ food.description|truncatechars:100 }}</p>
+                <p class="fw-bold" style="color: #00c2ff;">{{ food.price }} $</p>
             </div>
-            {% endfor %}
-        {% else %}
-            <div class="col-12 text-center py-5">
-                <i class="bi bi-search display-1 text-muted"></i>
-                <h3 class="text-muted mt-3">Продукты не найдены</h3>
-                <p class="text-muted">Попробуйте изменить поисковый запрос</p>
+            <div class="card-footer bg-transparent border-top border-secondary">
+                <form action="{% url 'add_to_cart' food.id %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-add-to-cart w-100">
+                        <i class="fas fa-cart-plus me-2"></i>В Корзину
+                    </button>
+                </form>
             </div>
-        {% endif %}
+        </div>
+    </div>
+    {% endfor %}
     </div>
 
 </div>

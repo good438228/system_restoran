@@ -1,0 +1,77 @@
+{% extends 'global_system/base.html' %}
+
+{% block content %}
+<div class="container my-5">
+  <h2 class="mb-4 text-center fw-bold">Ваш кошик</h2>
+
+  {% if cart_foods %}
+  <div class="row mb-4">
+    {% for item in cart_foods %}
+    <div class="col-12 mb-3">
+      <div class="d-flex align-items-center border-bottom pb-3">
+        <div class="me-3" style="width: 100px; height: 100px; flex-shrink: 0;">
+          {% if item.food.image %}
+          <img src="{{ item.food.image.url }}" alt="{{ item.food.name }}" class="img-fluid rounded" style="object-fit: cover; width:100%; height:100%;">
+          {% else %}
+          <div class="bg-light d-flex justify-content-center align-items-center rounded" style="width:100%; height:100%;">
+            <i class="bi bi-box-seam fs-1 text-muted"></i>
+          </div>
+          {% endif %}
+        </div>
+
+        <div class="flex-grow-1">
+          <h5 class="mb-1">{{ item.food.name }}</h5>
+          <div class="text-muted">Ціна: {{ item.food.price }} $ × {{ item.quantity }}</div>
+        </div>
+
+        <div class="text-end me-3">
+          <div class="fs-5 fw-bold text-success">{{ item.total_price }} $</div>
+        </div>
+
+        <div>
+          <form action="{% url 'remove_from_cart' item.food.id %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-outline-danger btn-sm">
+              <i class="bi bi-trash"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+  <div class="row mb-4">
+    <div class="col-12 d-flex justify-content-end">
+      <div class="fs-4 fw-bold">Разом: <span class="text-success">{{ total_price }} $</span></div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-6">
+      <a href="{% url 'food_list' %}" class="btn btn-outline-secondary w-100">
+        <i class="bi bi-arrow-left me-2"></i> Продовжити покупки
+      </a>
+    </div>
+    <div class="col-6">
+      <form method="post" class="d-grid">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-primary w-100">
+          Оформити замовлення
+        </button>
+      </form>
+    </div>
+  </div>
+
+  {% else %}
+  <div class="text-center p-5">
+    <i class="bi bi-cart-x fs-1 text-muted mb-3"></i>
+    <div class="fs-5 text-muted mb-3">Ваш кошик поки пустий</div>
+    <a href="{% url 'food_list' %}" class="btn btn-primary">
+      <i class="bi bi-arrow-left me-2"></i> Повернутися до товарів
+    </a>
+  </div>
+  {% endif %}
+
+</div>
+{% endblock %}
