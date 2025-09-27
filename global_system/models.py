@@ -17,3 +17,12 @@ class Table(models.Model):
     def __str__(self):
         return f'{self.table_number}'
 
+class Booking(models.Model):
+    table = models.ForeignKey(Table, on_delete=models.CASCADE)
+    custom_name = models.CharField(max_length=100)
+    check_in_date = models.DateField()
+    check_out_date = models.DateField()
+    total_price = models.DecimalField(max_digits=10, decimal_places=2)
+
+    def __str__(self):
+        return f'Booking for {self.custom_name} in {self.table}'

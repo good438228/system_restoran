@@ -1,9 +1,10 @@
 from statistics import quantiles
 
 from django.shortcuts import render,redirect,get_object_or_404
-from.models import Food
+from.models import Food, Booking, Table
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
+from .forms import BookingForm
 
 
 def register(request):

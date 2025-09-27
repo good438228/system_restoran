@@ -37,14 +37,27 @@
             transition: all 0.3s ease;
         }
 
-        .btn-primary {
-            background-color: #e76f51;
-            border-color: #e76f51;
+        /* новая кнопка регистрации в общем тоне */
+        .btn-register {
+            background: linear-gradient(135deg, #2a9d8f, #264653);
+            border: none;
+            color: #e9c46a;
+        }
+        .btn-register:hover {
+            background: linear-gradient(135deg, #264653, #2a9d8f);
+            color: #f4a261;
+            transform: translateY(-2px);
         }
 
-        .btn-primary:hover {
-            background-color: #f4a261;
-            border-color: #f4a261;
+        .btn-login {
+            /* вариант для кнопки входа, чтобы выглядела менее акцентной */
+            background: transparent;
+            border: 1px solid #e9c46a;
+            color: #e9c46a;
+        }
+        .btn-login:hover {
+            background: #e9c46a;
+            color: #264653;
             transform: translateY(-2px);
         }
 
@@ -60,6 +73,7 @@
             color: #264653;
         }
 
+        /* остальной CSS без изменений... */
         .btn-outline-danger {
             border-radius: 20px;
             border-color: #e76f51;
@@ -146,7 +160,7 @@
 <body>
 
     <nav class="navbar navbar-expand-lg sticky-top">
-        <div class="container">
+        <div class="container d-flex align-items-center">
             <a class="navbar-brand" href="{% url 'food_list' %}">
                 <i class="fas fa-utensils me-2"></i>La passion
             </a>
@@ -154,37 +168,40 @@
             <div class="search-container">
                 <form class="d-flex" action="{% url 'food_list' %}" method="get">
                     <div class="input-group">
-                        </button>
+                        <!-- ваш поиск -->
                     </div>
                 </form>
             </div>
 
-            <div class="d-flex align-items-center gap-3">
-                    {% if user.is_authenticated %}
-                        <span class="me-2 accent-text">Привет, {{ user.username }}!</span>
-                        <form action="{% url 'logout' %}" method="post" class="d-inline">
-                            {% csrf_token %}
-                            <button type="submit" class="btn btn-outline-light me-2">
-                                <i class="fas fa-sign-out-alt me-1"></i>Выйти
-                            </button>
-                        </form>
-                    {% else %}
-                        <a href="{% url 'login' %}" class="btn btn-outline-light me-2">
-                            <i class="fas fa-sign-in-alt me-1"></i>Войти
-                        </a>
-                        <a href="{% url 'register' %}" class="btn btn-primary me-2">
+            <div class="ms-auto d-flex align-items-center gap-2">
+                {% if user.is_authenticated %}
+                    <span class="me-3 accent-text">Привет, {{ user.username }}!</span>
+                    <form action="{% url 'logout' %}" method="post" class="d-inline">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-outline-light me-2">
+                            <i class="fas fa-sign-out-alt me-1"></i>Выйти
+                        </button>
+                    </form>
+                {% else %}
+                    <div class="btn-group" role="group" aria-label="auth-buttons">
+                        <a href="{% url 'register' %}" class="btn btn-register">
                             <i class="fas fa-user-plus me-1"></i>Регистрация
                         </a>
-                    {% endif %}
+                        <a href="{% url 'login' %}" class="btn btn-login">
+                            <i class="fas fa-sign-in-alt me-1"></i>Войти
+                        </a>
+                    </div>
+                {% endif %}
 
-                    <a href="{% url 'cart_view' %}" class="btn btn-outline-light position-relative">
-                        <i class="fas fa-shopping-cart"></i>
-                        {% if cart_items_count > 0 %}
-                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill" style="background-color: #e76f51;">
-                                {{ cart_items_count }}
-                            </span>
-                        {% endif %}
-                    </a>
+                <a href="{% url 'cart_view' %}" class="btn btn-outline-light ms-3 position-relative">
+                    <i class="fas fa-shopping-cart"></i>
+                    {% if cart_items_count > 0 %}
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill"
+                              style="background-color: #e76f51;">
+                            {{ cart_items_count }}
+                        </span>
+                    {% endif %}
+                </a>
             </div>
         </div>
     </nav>
