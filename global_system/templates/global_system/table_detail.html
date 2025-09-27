@@ -1,10 +1,46 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'global_system/base.html' %}
 
-</body>
-</html>
+{% block title %}Стол {{ table.table_number }} - La passion{% endblock %}
+
+{% block content %}
+<div class="min-vh-100" style="
+    background: linear-gradient(rgba(42, 157, 143, 0.6), rgba(38, 70, 83, 0.6)),
+                url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80');
+    background-size: cover;
+    background-position: center;
+    padding-top: 50px;
+    padding-bottom: 50px;
+">
+
+    <div class="container mt-5">
+
+        <div class="text-center mb-5">
+            <h1 class="display-4 fw-bold" style="font-family: 'Montserrat', sans-serif; color: #ffffff;">
+                Стол {{ table.table_number }}
+            </h1>
+            <p class="text-light fs-5">Детальная информация о столике:</p>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-lg-6 col-md-8 col-sm-12">
+
+                <div class="card border-0 shadow-lg rounded-5 overflow-hidden">
+
+                    <div class="position-relative" style="height: 10px; background: linear-gradient(90deg, #2a9d8f, #e9c46a);"></div>
+
+                    <div class="card-body text-center py-5" style="background: #ffffff;">
+                        <h2 class="card-title mb-4" style="color: #264653;">Стол {{ table.table_number }}</h2>
+                        <p class="mb-3 fs-5"><strong>Вместимость:</strong> {{ table.capacity }} человек</p>
+                        <p class="mb-4 fs-5"><strong>Цена:</strong> {{ table.table_price }} $</p>
+                    </div>
+
+                    <div class="position-relative" style="height: 10px; background: linear-gradient(90deg, #e9c46a, #2a9d8f);"></div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

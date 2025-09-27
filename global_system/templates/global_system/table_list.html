@@ -1,10 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'global_system/base.html' %}
 
-</body>
-</html>
+{% block title %}Список столиков - La passion{% endblock %}
+
+{% block content %}
+<div class="container">
+
+    <div class="banner-section text-center py-5 mb-4" style="background: linear-gradient(rgba(42, 157, 143, 0.8), rgba(38, 70, 83, 0.8)), url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80'); background-size: cover; background-position: center; color: #fff;">
+        <div class="container">
+            <h1 class="display-5 fw-bold mb-3" style="font-family: 'Montserrat', sans-serif; color: #e9c46a;">La passion</h1>
+            <p class="lead mb-4" style="font-size: 1.2rem; color: #ffffff;">Столики</p>
+        </div>
+    </div>
+
+    <div class="row">
+        {% for table in tables %}
+        <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+            <div class="card text-center shadow-lg p-4
+                {% if table.is_avaliable %}bg-success text-white{% else %}bg-danger text-white{% endif %}">
+                <div class="card-body">
+                    <h4 class="card-title mb-2">Стол {{ table.table_number }}</h4>
+                    <h5>Информация:</h5>
+                    <p class="mb-1">Количество мест: {{ table.capacity }}</p>
+                    <p class="mb-2">Цена: {{ table.table_price }} $</p>
+                    <a href="{% url 'table_detail' table.id %}" class="btn btn-light btn-sm">
+                        Подробнее
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p>Столики не найдены.</p>
+        {% endfor %}
+    </div>
+
+</div>
+{% endblock %}

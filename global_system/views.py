@@ -74,3 +74,16 @@ def remove_from_cart(request, food_id):
         request.session['cart'] = cart
 
     return redirect('cart_view')
+
+
+def table_view(request):
+    tables = Table.objects.all()
+    return render(request, 'global_system/table_list.html', {
+        'tables': tables
+    })
+
+def table_detail(request, table_id):
+    table = get_object_or_404(Table, id=table_id)
+    return render(request, "global_system/table_detail.html", {
+        'table': table
+    })
