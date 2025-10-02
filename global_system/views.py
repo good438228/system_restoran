@@ -1,5 +1,4 @@
 from statistics import quantiles
-
 from django.shortcuts import render,redirect,get_object_or_404
 from.models import Food, Booking, Table
 from django.contrib.auth.forms import UserCreationForm
@@ -51,13 +50,19 @@ def cart_view(request):
         'total_price': total_price
     })
 
+
 def add_to_cart(request, food_id):
     food = get_object_or_404(Food, id=food_id)
     cart = request.session.get('cart', {})
 
-    cart[str(food_id)] = cart.get(str(food_id), 0) + 1
-    request.session['cart'] = cart
+    quantity = int(request.POST.get('quantity', 1))
 
+    if str(food_id) in cart:
+        cart[str(food_id)] += quantity
+    else:
+        cart[str(food_id)] = quantity
+
+    request.session['cart'] = cart
     return redirect('cart_view')
 
 
@@ -87,3 +92,21 @@ def table_detail(request, table_id):
     return render(request, "global_system/table_detail.html", {
         'table': table
     })
+
+def food_detail(request, pk):
+    food = get_object_or_404(Food, pk=pk)
+    return render(request, 'global_system/food_detail.html',{
+        'food': food
+    })
+
+def book_room(request):
+    if request.method == 'POST':
+        form = BookingForm(request.POST)
+        if form.is_valid():
+            booking = form.save(commit=False)
+            room = booking.room
+            booking.total_price = room.price_per_night * (booking.check_out_date - booking.check_in_date).days
+            booking.save()
+            return redirect('booking_detail', booking_id=booking.id)
+    else:
+        form = BookingForm()
