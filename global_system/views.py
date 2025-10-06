@@ -99,14 +99,17 @@ def food_detail(request, pk):
         'food': food
     })
 
-def book_room(request):
+
+def book_table(request):
     if request.method == 'POST':
         form = BookingForm(request.POST)
         if form.is_valid():
             booking = form.save(commit=False)
-            room = booking.room
-            booking.total_price = room.price_per_night * (booking.check_out_date - booking.check_in_date).days
+            table = booking.table
+            booking.total_price = table.table_price
             booking.save()
-            return redirect('booking_detail', booking_id=booking.id)
+            return redirect('table_list_view')
     else:
         form = BookingForm()
+
+    return render(request, 'global_system/book_table.html', {'form': form})

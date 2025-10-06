@@ -15,6 +15,7 @@ urlpatterns = [
     path('table_list', views.table_view, name='table_list_view'),
     path('tables/<int:table_id>/', views.table_detail, name='table_detail'),
     path('food/<int:pk>/', views.food_detail, name='food_detail'),
+    path('book/', views.book_table, name='book_table'),
     ]
 
 if settings.DEBUG:

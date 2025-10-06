@@ -1,0 +1,37 @@
+{% extends "global_system/base.html" %}
+{% block title %}Бронювання кімнати{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-lg border-0 rounded-4">
+                <div class="card-header text-white text-center"
+                     style="background: linear-gradient(90deg, #2a9d8f, #264653);">
+                    <h3 class="mb-0">Бронювання кімнати</h3>
+                </div>
+                <div class="card-body p-4">
+                    <h5 class="mb-4 text-center text-muted">Кімната: {{ table.name }}</h5>
+
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            {{ form.as_p }}
+                        </div>
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-lg text-white fw-bold"
+                                    style="background: linear-gradient(90deg, #e9c46a, #f4a261); border: none; border-radius: 50px;">
+                                Забронювати
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                <div class="card-footer text-center">
+                    <a href="{% url 'table_list_view' %}" class="text-decoration-none fw-bold"
+                       style="color: #2a9d8f;">← Повернутися до списку кімнат</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
