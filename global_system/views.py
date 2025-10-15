@@ -1,9 +1,10 @@
 from statistics import quantiles
 from django.shortcuts import render,redirect,get_object_or_404
-from.models import Food, Booking, Table
+from.models import Food, Booking, Table,Review
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
-from .forms import BookingForm
+from .forms import BookingForm,ReviewForm
+from django.contrib.auth.decorators import login_required
 
 
 def register(request):
@@ -113,3 +114,22 @@ def book_table(request):
         form = BookingForm()
 
     return render(request, 'global_system/book_table.html', {'form': form})
+
+
+def review_list(request):
+    reviews = Review.objects.all().order_by('-id')
+    return render(request, 'global_system/review_list.html', {'reviews': reviews})
+
+@login_required
+def leave_review(request):
+    if request.method == 'POST':
+        form = ReviewForm(request.POST)
+        if form.is_valid():
+            review = form.save(commit=False)
+            review.user = request.user
+            review.save()
+            return redirect('review_list')
+    else:
+        form = ReviewForm()
+
+    return render(request, 'global_system/leave_review.html', {'form': form})

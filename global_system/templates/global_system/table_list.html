@@ -3,8 +3,17 @@
 {% block title %}Список столиков - La passion{% endblock %}
 
 {% block content %}
-<div class="container">
-
+    <div class="container text-center my-4">
+        <a href="{% url 'book_table' %}"
+           style="display:inline-block;padding:12px 24px;
+                  background:linear-gradient(135deg, #e76f51, #f4a261);
+                  color:#ffffff;text-decoration:none;border-radius:40px;
+                  font-size:17px;font-weight:600;letter-spacing:0.5px;
+                  box-shadow:0 4px 12px rgba(231,111,81,0.3);
+                  transition:all 0.3s ease;">
+            <i class="fas fa-chair me-2"></i>Забронировать стол
+        </a>
+    </div>
     <div class="banner-section text-center py-5 mb-4" style="background: linear-gradient(rgba(42, 157, 143, 0.8), rgba(38, 70, 83, 0.8)), url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80'); background-size: cover; background-position: center; color: #fff;">
         <div class="container">
             <h1 class="display-5 fw-bold mb-3" style="font-family: 'Montserrat', sans-serif; color: #e9c46a;">La passion</h1>

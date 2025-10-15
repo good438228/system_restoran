@@ -1,0 +1,28 @@
+{% extends "global_system/base.html" %}
+{% block content %}
+<div style="max-width:600px;margin:40px auto;text-align:center;font-family:sans-serif;">
+    <h2>Отзывы пользывателей</h2>
+
+    {% if reviews %}
+        {% for review in reviews %}
+            <div style="border:1px solid #ddd;padding:10px;border-radius:8px;margin:10px 0;">
+                <p>Пользыватель: <strong>{{ review.user.username }}</strong></p>
+                <p>Оценка: {{ review.rating }} ★</p>
+                {% if review.comment %}
+                    <p>Комментарий: {{ review.comment }}</p>
+                {% endif %}
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>Нету отзывов.</p>
+    {% endif %}
+
+<a href="{% url 'leave_review' %}"
+   style="display:inline-block;margin-top:15px;padding:10px 20px;
+          background:linear-gradient(135deg, #2a9d8f, #264653);
+          color:#e9c46a;text-decoration:none;border-radius:30px;
+          font-weight:500;transition:0.3s;">
+   <i class="fas fa-pen me-2"></i>Оставить отзыв
+</a>
+</div>
+{% endblock %}

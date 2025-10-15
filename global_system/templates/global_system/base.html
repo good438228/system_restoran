@@ -188,9 +188,10 @@
                         </a>
                     </div>
                 {% endif %}
-
                   <a href="{% url 'table_list_view' %}" class="btn btn-outline-light me-2">Перейти к столикам</a>
-
+                    <a href="{% url 'review_list' %}" class="btn btn-outline-light me-2">
+                        <i class="fas fa-star me-1"></i>Отзывы
+                    </a>
                 <a href="{% url 'cart_view' %}" class="btn btn-outline-light ms-3 position-relative">
                     <i class="fas fa-shopping-cart"></i>
                     {% if cart_items_count > 0 %}

@@ -1,0 +1,67 @@
+{% extends "global_system/base.html" %}
+
+{% block content %}
+<style>
+.review-container {
+    max-width: 550px;
+    margin: 60px auto;
+    padding: 30px;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    font-family: 'Segoe UI', sans-serif;
+}
+.review-container h2 {
+    text-align: center;
+    color: #264653;
+    margin-bottom: 25px;
+}
+.review-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.review-form button {
+    padding: 12px 20px;
+    background: linear-gradient(135deg, #2a9d8f, #264653);
+    color: #fff;
+    font-size: 16px;
+    font-weight: 500;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.review-form button:hover {
+    background: linear-gradient(135deg, #264653, #2a9d8f);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(42,157,143,0.4);
+}
+input, textarea, select {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 15px;
+    transition: 0.2s;
+}
+input:focus, textarea:focus, select:focus {
+    border-color: #2a9d8f;
+    outline: none;
+    box-shadow: 0 0 4px rgba(42,157,143,0.4);
+}
+label {
+    font-weight: 500;
+    color: #264653;
+}
+</style>
+
+<div class="review-container">
+    <h2>Оставить отзыв</h2>
+    <form method="post" class="review-form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Отправить</button>
+    </form>
+</div>
+{% endblock %}
