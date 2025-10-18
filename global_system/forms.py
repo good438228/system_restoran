@@ -1,5 +1,5 @@
 from django import forms
-from .models import Booking, Review
+from .models import Booking, Review, Delivery
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 
@@ -19,3 +19,8 @@ class ReviewForm(forms.ModelForm):
     class Meta:
         model = Review
         fields = ['rating', 'comment']
+
+class DeliveryForm(forms.ModelForm):
+    class Meta:
+        model = Delivery
+        fields = ['country', 'first_name', 'last_name', 'address', 'phone']

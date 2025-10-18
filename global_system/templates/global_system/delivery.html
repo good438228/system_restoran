@@ -1,0 +1,91 @@
+{% extends 'global_system/base.html' %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row g-4">
+        <div class="col-lg-8">
+            <div class="card border-0 shadow-lg rounded-4">
+                <div class="card-header bg-gradient text-white py-3" style="background: linear-gradient(135deg, #4e54c8, #8f94fb);">
+                    <h2 class="mb-0 fw-semibold"><i class="bi bi-truck me-2"></i>Оформление доставки</h2>
+                </div>
+                <div class="card-body p-4">
+                    <form id="orderForm" method="post">
+                        {% csrf_token %}
+                        <div class="row g-4">
+                            <div class="col-md-6">
+                                <label class="form-label fw-medium">Имя*</label>
+                                <input type="text" name="first_name" class="form-control form-control-lg shadow-sm" placeholder="Введите имя" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-medium">Фамилия*</label>
+                                <input type="text" name="last_name" class="form-control form-control-lg shadow-sm" placeholder="Введите фамилию" required>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label fw-medium">Страна*</label>
+                                <select name="country" class="form-select form-select-lg shadow-sm" required>
+                                    <option value="">Выберите страну</option>
+                                    <option value="Украина">Украина</option>
+                                    <option value="США">США</option>
+                                    <option value="Канада">Канада</option>
+                                    <option value="Мексика">Мексика</option>
+                                    <option value="Бразилия">Бразилия</option>
+                                    <option value="Великобритания">Великобритания</option>
+                                    <option value="Германия">Германия</option>
+                                    <option value="Франция">Франция</option>
+                                    <option value="Италия">Италия</option>
+                                    <option value="Испания">Испания</option>
+                                    <option value="Польша">Польша</option>
+                                    <option value="Швеция">Швеция</option>
+                                    <option value="Нидерланды">Нидерланды</option>
+                                    <option value="Япония">Япония</option>
+                                    <option value="Китай">Китай</option>
+                                    <option value="Индия">Индия</option>
+                                    <option value="Австралия">Австралия</option>
+                                    <option value="Новая Зеландия">Новая Зеландия</option>
+                                </select>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label fw-medium">Адрес*</label>
+                                <input type="text" name="address" class="form-control form-control-lg shadow-sm" placeholder="Улица, дом, квартира" required>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label fw-medium">Номер телефона</label>
+                                <input type="tel" name="phone" class="form-control form-control-lg shadow-sm" placeholder="Введите номер" required>
+                            </div>
+                            <div class="col-12 text-end pt-3">
+                                <button type="submit" class="btn btn-lg w-100 py-3 text-white fw-semibold shadow-sm"
+                                        style="background: linear-gradient(135deg, #11998e, #38ef7d); border: none;">
+                                    <i class="bi bi-lock-fill me-2"></i> Подтвердить заказ
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="card border-0 shadow-lg rounded-4 sticky-top" style="top: 20px;">
+                <div class="card-header bg-gradient text-white py-3" style="background: linear-gradient(135deg, #11998e, #38ef7d);">
+                    <h2 class="mb-0 fw-semibold" style="background: linear-gradient(135deg, #f37335, #fdc830); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                        <i class="bi bi-bag-check me-2"></i>Ваш заказ
+                    </h2>
+                </div>
+                <div class="card-body p-4">
+                    {% for item in cart_items %}
+                    <div class="d-flex justify-content-between mb-3 border-bottom pb-2">
+                        <span class="fw-medium">{{ item.food.name }}</span>
+                        <span class="text-muted">{{ item.food.price }} $ × {{ item.quantity }}</span>
+                    </div>
+                    {% empty %}
+                    <p class="text-center text-muted">Корзина пуста.</p>
+                    {% endfor %}
+                    <div class="d-flex justify-content-between fw-bold fs-5 mb-4">
+                        <span>Итого</span>
+                        <span>{{ total_delivery }} $</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

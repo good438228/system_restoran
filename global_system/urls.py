@@ -18,6 +18,7 @@ urlpatterns = [
     path('book/', views.book_table, name='book_table'),
     path('reviews/', views.review_list, name='review_list'),
     path('leave-review/', views.leave_review, name='leave_review'),
+    path('cart/buy/', views.buy, name='buy'),
     ]
 
 if settings.DEBUG:

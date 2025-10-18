@@ -3,7 +3,7 @@ from django.shortcuts import render,redirect,get_object_or_404
 from.models import Food, Booking, Table,Review
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
-from .forms import BookingForm,ReviewForm
+from .forms import BookingForm,ReviewForm,DeliveryForm
 from django.contrib.auth.decorators import login_required
 
 
@@ -133,3 +133,35 @@ def leave_review(request):
         form = ReviewForm()
 
     return render(request, 'global_system/leave_review.html', {'form': form})
+
+def buy(request):
+    cart = request.session.get('cart', {})
+    if not cart:
+        return redirect('cart_view')
+    foods = Food.objects.filter(id__in=cart.keys())
+    cart_items = []
+    cart_total = 0
+    for food in foods:
+        quantity = cart[str(food.id)]
+        item_total = food.price * quantity
+        cart_items.append({
+            'food': food,
+            'quantity': quantity,
+            'item_total': item_total
+        })
+        cart_total += item_total
+    if request.method == 'POST':
+        form = DeliveryForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('food_list')
+    else:
+        form = DeliveryForm()
+    context = {
+        'form': form,
+        'cart_items': cart_items,
+        'cart_total': cart_total,
+        'total_delivery': cart_total,
+    }
+
+    return render(request, 'global_system/delivery.html', context)
