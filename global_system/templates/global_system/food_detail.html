@@ -6,15 +6,41 @@
 <div class="container py-5">
     <div class="row">
         <div class="col-lg-6 mb-4">
-            {% if food.photo %}
-                <img src="{{ food.photo.url }}" class="food-image w-100" alt="{{ food.name }}">
-            {% else %}
-                <div class="placeholder-image">
-                    <div class="text-center">
-                        <i class="fas fa-utensils fa-3x mb-3"></i>
-                        <p>No Image Available</p>
+            {% if food.photo or food.photo2 or food.photo3 %}
+            <div id="foodCarousel" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    {% if food.photo %}
+                    <div class="carousel-item active">
+                        <img src="{{ food.photo.url }}" class="d-block w-100" alt="{{ food.name }}">
                     </div>
+                    {% endif %}
+                    {% if food.photo2 %}
+                    <div class="carousel-item {% if not food.photo %}active{% endif %}">
+                        <img src="{{ food.photo2.url }}" class="d-block w-100" alt="{{ food.name }}">
+                    </div>
+                    {% endif %}
+                    {% if food.photo3 %}
+                    <div class="carousel-item {% if not food.photo and not food.photo2 %}active{% endif %}">
+                        <img src="{{ food.photo3.url }}" class="d-block w-100" alt="{{ food.name }}">
+                    </div>
+                    {% endif %}
                 </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#foodCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#foodCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+            {% else %}
+            <div class="placeholder-image">
+                <div class="text-center">
+                    <i class="fas fa-utensils fa-3x mb-3"></i>
+                    <p>нема фото</p>
+                </div>
+            </div>
             {% endif %}
         </div>
         <div class="col-lg-6">
