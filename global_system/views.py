@@ -5,6 +5,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from .forms import BookingForm,ReviewForm,DeliveryForm
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
 
 
 def register(request):
@@ -26,8 +27,12 @@ def food_list(request):
     if search_query:
         foods = foods.filter(name__icontains=search_query)
 
+    paginator = Paginator(foods, 3)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
     return render(request, 'global_system/food_list.html',{
-        'foods': foods
+        'page_obj': page_obj
     })
 
 def cart_view(request):
