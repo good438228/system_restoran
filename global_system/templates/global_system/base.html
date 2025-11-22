@@ -109,6 +109,14 @@
             color: #e9c46a;
         }
 
+        footer a:hover {
+            color: #f4a261 !important;
+        }
+
+        .text-light-50 {
+            color: rgba(233,196,106,0.6);
+        }
+
         .search-container {
             flex-grow: 1;
             max-width: 400px;
@@ -133,14 +141,6 @@
             border-color: #f4a261;
         }
 
-        .text-primary {
-            color: #2a9d8f !important;
-        }
-
-        .text-muted {
-            color: #6c757d !important;
-        }
-
         .accent-text {
             color: #e9c46a;
         }
@@ -152,6 +152,64 @@
         .teal-bg {
             background-color: #2a9d8f;
         }
+
+        .custom-footer {
+    background-color: #3a3d41;
+    color: #ffffff;
+    padding: 50px 0 0;
+    margin-top: 60px;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 60px;
+}
+
+.footer-column {
+    flex: 1;
+    min-width: 250px;
+}
+
+.footer-column h4 {
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.footer-column p {
+    color: #d3d3d3;
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links li {
+    margin-bottom: 8px;
+}
+
+.footer-links a {
+    color: #d3d3d3;
+    text-decoration: none;
+}
+
+.footer-links a:hover {
+    color: #ffffff;
+}
+
+.footer-bottom {
+    background-color: #2f3134;
+    text-align: center;
+    padding: 15px 0;
+    margin-top: 40px;
+    color: #cfcfcf;
+}
+
+
     </style>
 </head>
 <body>
@@ -211,11 +269,44 @@
         </div>
     </main>
 
-    <footer class="py-4 mt-5 text-center">
-        <div class="container">
-            <h5 class="accent-text mb-3">Null</h5>
+<footer class="custom-footer">
+    <div class="footer-container container">
+
+    <div class="footer-column">
+        <h4>О нас</h4>
+        <p>La Passion — это онлайн-ресторан вкусной и быстрой еды. Мы сделали процесс заказа максимально простым, чтобы вы могли наслаждаться любимыми блюдами без лишних ожиданий.</p>
+        <p>Мы тщательно отбираем продукты и контролируем качество на каждом этапе. Ваш заказ — это наш вклад в ваше отличное настроение и сытость.</p>
+    </div>
+
+            <div class="column">
+                <h4>Follow us</h4>
+                <div class="social-icons">
+                    <a href="https://twitter.com" target="_blank">Twitter</a>
+                    <a href="https://facebook.com" target="_blank">Facebook</a>
+                    <a href="https://youtube.com" target="_blank">YouTube</a>
+                    <a href="https://instagram.com" target="_blank">Instagram</a>
+                    <a href="https://tiktok.com" target="_blank">TikTok</a>
+                    <a href="mailto:info@glitchproductions.com" target="_blank">Email</a>
+                </div>
+            </div>
+
+        <div class="footer-column">
+            <h4>Quick Links</h4>
+            <ul class="footer-links">
+                <li><a href="politicalpath">Политика конфиденциальности</a></li>
+                <li><a href="mailto:LaPassion.store@gmail.com">Contact Us: LaPassion.store@gmail.com</a></li>
+                <li><a href="feereturn">Политика возврата и возмещения</a></li>
+            </ul>
         </div>
-    </footer>
+
+    </div>
+
+    <div class="footer-bottom">
+        <p>Copyright © 2025 La Passion </p>
+    </div>
+</footer>
+
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>

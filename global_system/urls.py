@@ -19,6 +19,8 @@ urlpatterns = [
     path('reviews/', views.review_list, name='review_list'),
     path('leave-review/', views.leave_review, name='leave_review'),
     path('cart/buy/', views.buy, name='buy'),
+    path('politicalpath/', views.political, name='political'),
+    path('feereturn/', views.returned_fee, name='fee'),
     ]
 
 if settings.DEBUG:

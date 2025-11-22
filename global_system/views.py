@@ -170,3 +170,9 @@ def buy(request):
     }
 
     return render(request, 'global_system/delivery.html', context)
+
+def political(request):
+    return render(request, 'global_system/political.confident.html')
+
+def returned_fee(request):
+    return render(request, 'global_system/return.politican.fee.html')
