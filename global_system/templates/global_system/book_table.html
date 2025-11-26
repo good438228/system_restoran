@@ -8,10 +8,10 @@
             <div class="card shadow-lg border-0 rounded-4">
                 <div class="card-header text-white text-center"
                      style="background: linear-gradient(90deg, #2a9d8f, #264653);">
-                    <h3 class="mb-0">Бронювання кімнати</h3>
+                    <h3 class="mb-0">Бронювання столиків</h3>
                 </div>
                 <div class="card-body p-4">
-                    <h5 class="mb-4 text-center text-muted">Кімната: {{ table.name }}</h5>
+                    <h5 class="mb-4 text-center text-muted">Стіл: {{ table.name }}</h5>
 
                     <form method="post">
                         {% csrf_token %}
@@ -28,7 +28,7 @@
                 </div>
                 <div class="card-footer text-center">
                     <a href="{% url 'table_list_view' %}" class="text-decoration-none fw-bold"
-                       style="color: #2a9d8f;">← Повернутися до списку кімнат</a>
+                       style="color: #2a9d8f;">← Повернутися до списку столиків</a>
                 </div>
             </div>
         </div>

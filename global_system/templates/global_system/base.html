@@ -216,9 +216,11 @@
 
     <nav class="navbar navbar-expand-lg sticky-top">
         <div class="container d-flex align-items-center">
-            <a class="navbar-brand" href="{% url 'food_list' %}">
-                <i class="fas fa-utensils me-2"></i>La passion
+            <a class="navbar-brand d-flex align-items-center" href="{% url 'food_list' %}">
+            <img src="https://static.wikia.nocookie.net/skibidi-toilet-official/images/e/ef/TVLogo.png/revision/latest?cb=20240520132839" alt="Logo" style="height:70px; width:auto;" class="me-2">
+            La passion
             </a>
+
 
             <div class="search-container">
                 <form class="d-flex" action="{% url 'food_list' %}" method="get">
@@ -277,19 +279,17 @@
         <p>La Passion — это онлайн-ресторан вкусной и быстрой еды. Мы сделали процесс заказа максимально простым, чтобы вы могли наслаждаться любимыми блюдами без лишних ожиданий.</p>
         <p>Мы тщательно отбираем продукты и контролируем качество на каждом этапе. Ваш заказ — это наш вклад в ваше отличное настроение и сытость.</p>
     </div>
-
-            <div class="column">
-                <h4>Follow us</h4>
-                <div class="social-icons">
-                    <a href="https://twitter.com" target="_blank">Twitter</a>
-                    <a href="https://facebook.com" target="_blank">Facebook</a>
-                    <a href="https://youtube.com" target="_blank">YouTube</a>
-                    <a href="https://instagram.com" target="_blank">Instagram</a>
-                    <a href="https://tiktok.com" target="_blank">TikTok</a>
-                    <a href="mailto:info@glitchproductions.com" target="_blank">Email</a>
-                </div>
+        <div class="column">
+            <h4>Follow us</h4>
+            <div class="social-icons">
+                <a href="https://twitter.com" target="_blank" style="display:block;">Twitter</a>
+                <a href="https://facebook.com" target="_blank" style="display:block;">Facebook</a>
+                <a href="https://youtube.com" target="_blank" style="display:block;">YouTube</a>
+                <a href="https://instagram.com" target="_blank" style="display:block;">Instagram</a>
+                <a href="https://tiktok.com" target="_blank" style="display:block;">TikTok</a>
+                <a href="mailto:info@glitchproductions.com" target="_blank" style="display:block;">Email</a>
             </div>
-
+        </div>
         <div class="footer-column">
             <h4>Quick Links</h4>
             <ul class="footer-links">
@@ -305,9 +305,6 @@
         <p>Copyright © 2025 La Passion </p>
     </div>
 </footer>
-
-
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

@@ -56,9 +56,10 @@
     <div class="col-6">
       <form method="post" action="{% url 'buy' %}" class="d-grid">
         {% csrf_token %}
-        <button type="submit" class="btn btn-primary w-100">
+        <button type="submit" class="btn w-100"
+          style="background-color:#2a9d8f; border:none;">
           Оформити замовлення
-        </button>
+          </button>
       </form>
     </div>
   {% else %}
