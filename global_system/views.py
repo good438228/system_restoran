@@ -27,7 +27,7 @@ def food_list(request):
     if search_query:
         foods = foods.filter(name__icontains=search_query)
 
-    paginator = Paginator(foods, 3)
+    paginator = Paginator(foods, 4)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
@@ -159,7 +159,7 @@ def buy(request):
         form = DeliveryForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('food_list')
+            return redirect('delivOK')
     else:
         form = DeliveryForm()
     context = {
@@ -176,3 +176,6 @@ def political(request):
 
 def returned_fee(request):
     return render(request, 'global_system/return.politican.fee.html')
+
+def delivery_success(request):
+    return render(request, 'global_system/success.dostavka.html')

@@ -21,6 +21,7 @@ urlpatterns = [
     path('cart/buy/', views.buy, name='buy'),
     path('politicalpath/', views.political, name='political'),
     path('feereturn/', views.returned_fee, name='fee'),
+    path('deliverys/', views.delivery_success, name='delivOK')
     ]
 
 if settings.DEBUG:

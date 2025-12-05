@@ -72,7 +72,7 @@
             {% for num in page_obj.paginator.page_range %}
                 {% if num == page_obj.number %}
                     <li class="page-item active"><span class="page-link">{{ num }}</span></li>
-                {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                {% elif num > page_obj.number|add:'-4' and num < page_obj.number|add:'4' %}
                     <li class="page-item"><a class="page-link" href="?page={{ num }}{% if search_query %}&search={{ search_query }}{% endif %}">{{ num }}</a></li>
                 {% endif %}
             {% endfor %}
